@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)file:///Users/wangzhe/.openclaw/workspace/personal-website/index.html#contact -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhe Wang — Xidian University</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link href="./Zhe Wang — Xidian University_files/css2" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════
+           CSS CUSTOM PROPERTIES
+           ═══════════════════════════════════════════ */
+        :root {
+            --bg: #fafafa;
+            --bg-card: #ffffff;
+            --text: #1a1a2e;
+            --text-secondary: #6b7280;
+            --accent: #2563eb;
+            --accent-soft: #dbeafe;
+            --accent-dark: #1d4ed8;
+            --border: #e5e7eb;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-hero: linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+            --shadow-xl: 0 20px 50px -12px rgba(0,0,0,0.15);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ═══════════════════════════════════════════
+           RESET & BASE
+           ═══════════════════════════════════════════ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ═══════════════════════════════════════════
+           NAVIGATION
+           ═══════════════════════════════════════════ */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 0 48px; height: 72px;
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(250,250,250,0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            transition: var(--transition);
+        }
+        nav.scrolled { box-shadow: var(--shadow-sm); }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700; font-size: 1.2rem; color: var(--text);
+            text-decoration: none; letter-spacing: -0.02em;
+        }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-secondary);
+            font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em;
+            position: relative; transition: var(--transition);
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: var(--accent);
+            transition: var(--transition); border-radius: 1px;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* ═══════════════════════════════════════════
+           HERO SECTION
+           ═══════════════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-hero);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 40%, rgba(99,102,241,0.15) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 50% at 80% 60%, rgba(139,92,246,0.1) 0%, transparent 70%);
+        }
+        /* Animated grid */
+        .hero-grid {
+            position: absolute; inset: 0; opacity: 0.06;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px);
+            background-size: 80px 80px;
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(80px,80px); }
+        }
+        .hero-content {
+            position: relative; z-index: 2; text-align: center;
+            padding: 0 24px; max-width: 800px;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 16px; border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            font-size: 0.8rem; color: rgba(255,255,255,0.7);
+            font-weight: 500; letter-spacing: 0.04em;
+            margin-bottom: 32px;
+            backdrop-filter: blur(10px);
+        }
+        .hero-badge .dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: #34d399; animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100%{ opacity:1; } 50%{ opacity:0.4; } }
+        .hero-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 700; color: #fff;
+            letter-spacing: -0.03em; line-height: 1.1;
+            margin-bottom: 8px;
+        }
+        .hero-name-cn {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            font-weight: 300; color: rgba(255,255,255,0.5);
+            letter-spacing: 0.15em; margin-bottom: 28px;
+        }
+        .hero-desc {
+            font-size: 1.1rem; color: rgba(255,255,255,0.6);
+            font-weight: 300; line-height: 1.8; max-width: 560px; margin: 0 auto 40px;
+        }
+        .hero-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .hero-btn {
+            padding: 12px 28px; border-radius: 12px; font-size: 0.9rem;
+            font-weight: 500; text-decoration: none; transition: var(--transition);
+            letter-spacing: 0.02em; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .hero-btn.primary {
+            background: #fff; color: #0f172a;
+        }
+        .hero-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,255,255,0.2); }
+        .hero-btn.secondary {
+            background: rgba(255,255,255,0.08); color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+        }
+        .hero-btn.secondary:hover { background: rgba(255,255,255,0.14); transform: translateY(-2px); }
+        .scroll-hint {
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            color: rgba(255,255,255,0.3); font-size: 0.75rem; letter-spacing: 0.1em;
+        }
+        .scroll-hint .line {
+            width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+        @keyframes scrollLine { 0%,100%{ opacity:0; transform:scaleY(0); } 50%{ opacity:1; transform:scaleY(1); } }
+
+        /* ═══════════════════════════════════════════
+           SECTIONS (shared)
+           ═══════════════════════════════════════════ */
+        .section {
+            padding: 120px 48px; max-width: 1100px; margin: 0 auto;
+        }
+        .section-label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700; letter-spacing: -0.02em;
+            color: var(--text); margin-bottom: 16px; line-height: 1.2;
+        }
+        .section-subtitle {
+            font-size: 1.05rem; color: var(--text-secondary);
+            max-width: 600px; line-height: 1.8; font-weight: 300;
+            margin-bottom: 56px;
+        }
+
+        /* ═══════════════════════════════════════════
+           ABOUT
+           ═══════════════════════════════════════════ */
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+            align-items: start;
+        }
+        .about-text p {
+            color: var(--text-secondary); font-size: 0.95rem;
+            line-height: 1.9; margin-bottom: 20px;
+        }
+        .about-text strong { color: var(--text); font-weight: 600; }
+        .info-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+        .info-card h3 {
+            font-size: 0.85rem; font-weight: 600; color: var(--text);
+            letter-spacing: 0.04em; margin-bottom: 20px;
+        }
+        .info-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 0; border-bottom: 1px solid var(--border);
+        }
+        .info-item:last-child { border-bottom: none; }
+        .info-item .label { font-size: 0.85rem; color: var(--text-secondary); }
+        .info-item .value { font-size: 0.85rem; font-weight: 500; color: var(--text); }
+
+        /* ═══════════════════════════════════════════
+           RESEARCH INTERESTS
+           ═══════════════════════════════════════════ */
+        .interests-section { background: #f3f4f6; padding: 120px 48px; }
+        .interests-inner { max-width: 1100px; margin: 0 auto; }
+        .interest-tags { display: flex; flex-wrap: wrap; gap: 12px; }
+        .interest-tag {
+            padding: 14px 24px; border-radius: 12px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            font-size: 0.9rem; font-weight: 500; color: var(--text);
+            transition: var(--transition); cursor: default;
+            box-shadow: var(--shadow-sm);
+        }
+        .interest-tag:hover {
+            transform: translateY(-3px); box-shadow: var(--shadow-lg);
+            border-color: var(--accent); color: var(--accent);
+        }
+
+        /* ═══════════════════════════════════════════
+           STATS BAR
+           ═══════════════════════════════════════════ */
+        .stats-bar {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1px; background: var(--border); border-radius: var(--radius);
+            overflow: hidden; box-shadow: var(--shadow-md);
+        }
+        .stat-item {
+            background: var(--bg-card); padding: 36px 24px; text-align: center;
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem; font-weight: 700; color: var(--accent);
+            line-height: 1; margin-bottom: 8px;
+        }
+        .stat-label {
+            font-size: 0.8rem; color: var(--text-secondary);
+            font-weight: 500; letter-spacing: 0.04em;
+        }
+
+        /* ═══════════════════════════════════════════
+           PUBLICATIONS
+           ═══════════════════════════════════════════ */
+        .pub-list { display: flex; flex-direction: column; gap: 20px; }
+        .pub-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 32px;
+            transition: var(--transition); position: relative; overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .pub-card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 4px; height: 100%; background: var(--gradient-1);
+            opacity: 0; transition: var(--transition);
+        }
+        .pub-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: transparent; }
+        .pub-card:hover::before { opacity: 1; }
+        .pub-venue {
+            display: inline-block; padding: 4px 12px; border-radius: 6px;
+            font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em;
+            text-transform: uppercase; margin-bottom: 12px;
+        }
+        .venue-ccf-a { background: #fef3c7; color: #92400e; }
+        .venue-ccf-b { background: #dbeafe; color: #1e40af; }
+        .venue-journal { background: #d1fae5; color: #065f46; }
+        .pub-title-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem; font-weight: 600; color: var(--text);
+            line-height: 1.4; margin-bottom: 8px;
+        }
+        .pub-authors {
+            font-size: 0.85rem; color: var(--text-secondary);
+            margin-bottom: 12px; line-height: 1.6;
+        }
+        .pub-authors strong { color: var(--text); font-weight: 600; }
+        .pub-abstract {
+            font-size: 0.85rem; color: var(--text-secondary);
+            line-height: 1.8; border-left: 2px solid var(--border);
+            padding-left: 16px; margin-top: 12px;
+        }
+
+        /* ═══════════════════════════════════════════
+           EDUCATION
+           ═══════════════════════════════════════════ */
+        .timeline { position: relative; padding-left: 32px; }
+        .timeline::before {
+            content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px;
+            width: 1px; background: var(--border);
+        }
+        .timeline-item { position: relative; padding-bottom: 40px; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -29px; top: 8px;
+            width: 11px; height: 11px; border-radius: 50%;
+            background: var(--bg-card); border: 2px solid var(--accent);
+        }
+        .timeline-date {
+            font-size: 0.75rem; font-weight: 600; color: var(--accent);
+            letter-spacing: 0.06em; margin-bottom: 6px;
+        }
+        .timeline-title {
+            font-size: 1.05rem; font-weight: 600; color: var(--text);
+            margin-bottom: 4px;
+        }
+        .timeline-desc {
+            font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;
+        }
+
+        /* ═══════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════ */
+        footer {
+            background: #0f172a; color: rgba(255,255,255,0.5);
+            text-align: center; padding: 60px 48px;
+        }
+        footer .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem; color: #fff; margin-bottom: 8px;
+        }
+        footer .info { font-size: 0.85rem; line-height: 1.8; }
+        footer .copy { margin-top: 32px; font-size: 0.75rem; opacity: 0.5; }
+
+        /* ═══════════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════════ */
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ═══════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; }
+            .nav-links { gap: 20px; }
+            .nav-links a { font-size: 0.8rem; }
+            .section { padding: 80px 24px; }
+            .interests-section { padding: 80px 24px; }
+            .about-grid { grid-template-columns: 1fr; gap: 32px; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .hero-btn { padding: 10px 20px; font-size: 0.85rem; }
+            footer { padding: 48px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════ NAVIGATION ═══════════════ -->
+<nav id="navbar" class="scrolled">
+    <a href="file:///Users/wangzhe/.openclaw/workspace/personal-website/index.html#" class="nav-logo">ZW</a>
+    <ul class="nav-links">
+        <li><a href="file:///Users/wangzhe/.openclaw/workspace/personal-website/index.html#about">About</a></li>
+        <li><a href="file:///Users/wangzhe/.openclaw/workspace/personal-website/index.html#research">Research</a></li>
+        <li><a href="file:///Users/wangzhe/.openclaw/workspace/personal-website/index.html#publications">Publications</a></li>
+        <li><a href="file:///Users/wangzhe/.openclaw/workspace/personal-website/index.html#education">Education</a></li>
+        <li><a href="file:///Users/wangzhe/.openclaw/workspace/personal-website/index.html#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span class="dot"></span>
+            Ph.D. Student at Xidian University
+        </div>
+        <h1 class="hero-name">Zhe Wang</h1>
+        <p class="hero-name-cn">王  哲</p>
+        <p class="hero-desc">
+            Researching knowledge graphs, entity alignment, and graph representation learning — pushing the boundaries of how machines understand and connect structured knowledge.
+        </p>
+        <div class="hero-links">
+            <a href="file:///Users/wangzhe/.openclaw/workspace/personal-website/index.html#publications" class="hero-btn primary">📄 View Publications</a>
+            <a href="mailto:zwang_01@stu.xidian.edu.cn" class="hero-btn secondary">✉️ Get in Touch</a>
+        </div>
+    </div>
+    <div class="scroll-hint">
+        SCROLL
+        <div class="line"></div>
+    </div>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section class="section" id="about">
+    <div class="reveal visible">
+        <div class="section-label">About</div>
+        <h2 class="section-title">Who I Am</h2>
+        <p class="section-subtitle">A researcher passionate about unlocking the power of structured knowledge through graph learning.</p>
+    </div>
+    <div class="about-grid reveal visible">
+        <div class="about-text">
+            <p>
+                I am a <strong>Ph.D. student</strong> at the <strong>School of Computer Science and Technology</strong>,
+                <strong>Xidian University</strong>, advised by <strong>Prof. Ziyu Guan</strong>.
+            </p>
+            <p>
+                My research focuses on <strong>knowledge graph representation learning</strong>,
+                <strong>entity alignment</strong>, <strong>graph neural networks</strong>, and
+                <strong>self-supervised learning</strong>. I aim to develop scalable and principled
+                methods that enable machines to better understand, align, and reason over complex
+                structured data.
+            </p>
+            <p>
+                I have published in top-tier venues including <strong>NeurIPS</strong>,
+                <strong>WWW</strong>, <strong>ICDE</strong>, <strong>TKDE</strong>, and
+                <strong>CIKM</strong>, with a strong track record in CCF-A conferences and journals.
+            </p>
+        </div>
+        <div class="info-card">
+            <h3>Quick Info</h3>
+            <div class="info-item">
+                <span class="label">Degree</span>
+                <span class="value">Ph.D. (硕博连读)</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Advisor</span>
+                <span class="value">Prof. Ziyu Guan</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Institution</span>
+                <span class="value">Xidian University</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Email</span>
+                <span class="value">zwang_01@stu.xidian.edu.cn</span>
+            </div>
+            <div class="info-item">
+                <span class="label">GitHub</span>
+                <span class="value">github.com/wzCSDN</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div style="margin-top: 56px;" class="reveal visible">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Publications</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4</div>
+                <div class="stat-label">CCF-A Papers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2</div>
+                <div class="stat-label">NSFC Projects</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">Top 5%</div>
+                <div class="stat-label">WSDM Challenge</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ RESEARCH INTERESTS ═══════════════ -->
+<section class="interests-section" id="research">
+    <div class="interests-inner">
+        <div class="reveal visible">
+            <div class="section-label">Research</div>
+            <h2 class="section-title">Research Interests</h2>
+            <p class="section-subtitle">Bridging structured knowledge with deep learning to build more intelligent systems.</p>
+        </div>
+        <div class="interest-tags reveal visible">
+            <div class="interest-tag">🔗 Knowledge Graphs &amp; Entity Alignment</div>
+            <div class="interest-tag">🧠 Graph Neural Networks</div>
+            <div class="interest-tag">🎯 Self-Supervised Learning</div>
+            <div class="interest-tag">🌐 Heterogeneous Information Networks</div>
+            <div class="interest-tag">📊 Recommender Systems</div>
+            <div class="interest-tag">📈 Time Series Forecasting</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ PUBLICATIONS ═══════════════ -->
+<section class="section" id="publications">
+    <div class="reveal visible">
+        <div class="section-label">Publications</div>
+        <h2 class="section-title">Selected Papers</h2>
+        <p class="section-subtitle">Recent work in knowledge graphs, graph learning, and recommendation.</p>
+    </div>
+
+    <div class="pub-list">
+
+        <!-- Pub 1 -->
+        <div class="pub-card reveal visible">
+            <span class="pub-venue venue-ccf-a">NeurIPS 2022 · Spotlight (5.8%)</span>
+            <div class="pub-title-text">Self-supervised Heterogeneous Graph Pre-training based on Structural Clustering</div>
+            <div class="pub-authors">Yaming Yang, Ziyu Guan, <strong>Zhe Wang</strong>, Wei Zhao*, Cai Xu, Weigang Lu, Jianbin Huang</div>
+            <div class="pub-abstract">Proposed SHGP — a self-supervised pre-training approach that requires no positive/negative sample generation. Achieved 98.41% node classification accuracy on MAG dataset. Widely reported by AI media outlets.</div>
+        </div>
+
+        <!-- Pub 2 -->
+        <div class="pub-card reveal visible">
+            <span class="pub-venue venue-ccf-a">WWW 2026 · CCF-A</span>
+            <div class="pub-title-text">Aligning Multiple Knowledge Graphs in A Single Pass</div>
+            <div class="pub-authors">Yaming Yang, <strong>Zhe Wang</strong>, Ziyu Guan*, Wei Zhao, Weigang Lu, Xinyan Huang, Jiangtao Cui, Xiaofei He</div>
+            <div class="pub-abstract">First work to study and solve multi-KG (&gt;2) alignment in a single pass. Proposed MultiEA framework with three alignment strategies and high-order similarity inference enhancement. Built two new benchmark datasets.</div>
+        </div>
+
+        <!-- Pub 3 -->
+        <div class="pub-card reveal visible">
+            <span class="pub-venue venue-journal">IEEE TKDE 2025 · CCF-A Journal</span>
+            <div class="pub-title-text">Unsupervised Entity Alignment Based on Personalized Discriminative Rooted Tree</div>
+            <div class="pub-authors">Yaming Yang, <strong>Zhe Wang</strong>, Ziyu Guan, Wei Zhao*, Xinyan Huang, Xiaofei He</div>
+            <div class="pub-abstract">Proposed UNEA with parametric tree neighborhood sampling and tree attention aggregation for personalized embeddings. Outperformed many supervised EA baselines in unsupervised settings.</div>
+        </div>
+
+        <!-- Pub 4 -->
+        <div class="pub-card reveal visible">
+            <span class="pub-venue venue-ccf-a">ICDE 2025 · CCF-A</span>
+            <div class="pub-title-text">A Translation-based Heterogeneous Graph Neural Network for Multiple Knowledge Graphs Alignment</div>
+            <div class="pub-authors">Yaming Yang, Zhuofeng Luo, <strong>Zhe Wang</strong>, Weigang Lu, Yiheng Lu, Ziyu Guan*, Wei Zhao, Yuanhai Lv</div>
+            <div class="pub-abstract">Proposed KG2HIN that transforms KGs into HINs, combining HGNN aggregation with translation-based KG embedding. Improved M-Hits@1 from 10.25% to 73.05% on DBP-4 with fewer parameters.</div>
+        </div>
+
+        <!-- Pub 5 -->
+        <div class="pub-card reveal visible">
+            <span class="pub-venue venue-ccf-a">NeurIPS 2025 · CCF-A</span>
+            <div class="pub-title-text">Defining and Discovering Hyper-meta-paths for Heterogeneous Hypergraphs</div>
+            <div class="pub-authors">Yaming Yang, Ziyu Zheng, Weigang Lu, <strong>Zhe Wang</strong>, Xinyan Huang, Wei Zhao, Ziyu Guan*</div>
+            <div class="pub-abstract">Introduced hyper-meta-path concept for heterogeneous hypergraphs. Designed HHNN with attention to learn importance of hyper-meta-paths, improving both performance and interpretability.</div>
+        </div>
+
+        <!-- Pub 6 -->
+        <div class="pub-card reveal visible">
+            <span class="pub-venue venue-ccf-b">CIKM 2025 · CCF-B</span>
+            <div class="pub-title-text">Audience-Aware and Self-Adaptive Multi-Interest Modeling for Sharing Rate Prediction in Affiliate Marketing</div>
+            <div class="pub-authors"><strong>Zhe Wang</strong>, Yaming Yang, Ziyu Guan*, Rui Wang, Yujian Cao, Bin Tong*, Wei Zhao, Hongbo Deng*</div>
+            <div class="pub-abstract">Multi-interest modeling for B-end promoter sharing rate prediction. Proposed dynamic routing with interest capsules and dual-channel attention for audience preference integration.</div>
+        </div>
+
+        <!-- Pub 7 -->
+        <div class="pub-card reveal visible">
+            <span class="pub-venue venue-ccf-b">CIKM 2025 · CCF-B</span>
+            <div class="pub-title-text">Dynamic Network-Based Two-Stage Time Series Forecasting for Affiliate Marketing</div>
+            <div class="pub-authors"><strong>Zhe Wang</strong>, Yaming Yang, Bin Tong, Rui Wang, Ziyu Guan, Wei Zhao*, Hongbo Deng*</div>
+            <div class="pub-abstract">Designed propagation scale metric for promoter indirect contributions. Two-stage solution with descendant graph convolution encoding and hypergraph convolution.</div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════════════ EDUCATION ═══════════════ -->
+<section class="section" id="education" style="background: #f9fafb; padding: 120px 48px; max-width: 100%; background-clip: padding-box;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+        <div class="reveal visible">
+            <div class="section-label">Education</div>
+            <h2 class="section-title">Academic Journey</h2>
+            <p class="section-subtitle">From e-commerce to graph intelligence.</p>
+        </div>
+        <div class="timeline reveal visible" style="max-width: 600px;">
+            <div class="timeline-item">
+                <div class="timeline-date">2023.09 — Present</div>
+                <div class="timeline-title">Ph.D. in Computer Science and Technology</div>
+                <div class="timeline-desc">Xidian University · Advisor: Prof. Ziyu Guan</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2020.09 — 2023.06</div>
+                <div class="timeline-title">M.Eng. in Computer Technology</div>
+                <div class="timeline-desc">Xidian University</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2016.09 — 2020.06</div>
+                <div class="timeline-title">B.Eng. in E-Commerce</div>
+                <div class="timeline-desc">Hefei University of Technology</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer id="contact">
+    <div class="name">Zhe Wang</div>
+    <div class="info">
+        School of Computer Science and Technology, Xidian University<br>
+        zwang_01@stu.xidian.edu.cn &nbsp;·&nbsp; github.com/wzCSDN
+    </div>
+    <div class="copy">© 2026 Zhe Wang. Built with care.</div>
+</footer>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+    // Nav scroll effect
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth counter animation for stats
+    const statObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                const el = e.target;
+                const target = el.textContent;
+                if (!isNaN(parseInt(target))) {
+                    const num = parseInt(target);
+                    let current = 0;
+                    const step = Math.max(1, Math.floor(num / 20));
+                    const interval = setInterval(() => {
+                        current += step;
+                        if (current >= num) {
+                            current = num;
+                            clearInterval(interval);
+                        }
+                        el.textContent = current;
+                    }, 50);
+                }
+                statObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
+</script>
+
+
+
+</body></html>
